@@ -1,5 +1,5 @@
 #Introduction to NLP using NLTK and Python
-QCon San Francisco 2016
+Codemash 2016
 
 Amber McKenzie
 
@@ -11,7 +11,7 @@ Amber McKenzie
 - Download: https://git-scm.com/download/win
 - Run the installer, use Git from the Windows Command Prompt
 - Open a command prompt, navigate to a working directory
-- Run: git clone https://github.com/ab6/QConSF-2016.git
+- Run: git clone https://github.com/ab6/Codemash2016-NLPprecompiler.git
 
 ####Install Python3:
 - Download: https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe
@@ -47,3 +47,5 @@ Amber McKenzie
   - averaged_perceptron_tagger 
   - maxent_ne_chunker
   - punkt
+  
+
