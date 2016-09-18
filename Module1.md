@@ -1,4 +1,4 @@
-#Precompiler - Introduction to NLP using NLTK and Python
+#Workshop - Introduction to NLP using NLTK and Python
 - QCon San Francisco 2016
 - November 11, 2016
 - Amber McKenzie

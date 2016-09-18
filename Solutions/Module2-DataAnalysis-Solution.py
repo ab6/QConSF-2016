@@ -6,7 +6,7 @@ QCon San Francisco 2016
 https://github.com/ab6/QConSF-2016.git
 
 This module is designed to present NLP basics from the NLTK within a basic data analysis application.
-It covers word tokenization, sentence tokenization, bigrams, part-of-speech (pos) tagging, and named entity tagging.
+It covers word tokenization, sentence tokenization, bigrams and collocations, part-of-speech (pos) tagging, and named entity tagging.
 For additional information and prerequisites, see the readme on the github repo.
 
 Notes:
@@ -16,6 +16,7 @@ Notes:
 
 
 import nltk
+from nltk.collocations import *
 from nltk.corpus import state_union
 import matplotlib.pyplot as plt
 
@@ -65,12 +66,13 @@ ratios = [(float(len(set(words)))/float(len(words))) for words in tokens]
 plt.scatter(years, ratios)
 plt.show()
 
-#get top bigrams for each year
+#Collocations
 lower = [[word.lower() for word in words] for words in tokens]
-bigrams = [nltk.FreqDist(nltk.bigrams(items)) for items in lower]
-print ("Top 10 bigrams by year")
-for bis, year in zip(bigrams, years):
-    print (year, bis.keys()[:10])
+bigram_measures = nltk.collocations.BigramAssocMeasures()
+for i in range(len(years)):
+    finder = BigramCollocationFinder.from_words(lower[i])
+    finder.apply_freq_filter(3)
+    print (years[i], finder.nbest(bigram_measures.pmi, 10))
 
 #chunk text and extract entities
 postags = [nltk.pos_tag_sents(entry) for entry in senttokens]
@@ -83,13 +85,16 @@ allentities = [item for sublist in ents for item in sublist]
 allentfreq = nltk.FreqDist(allentities)
 
 #make list of top 50 most frequent and prune individual docs to take out filtered words
-filtered = allentfreq.keys()[:50]
-pruned = [(list(set(entFreq) - set(filtered))) for entFreq in entFreqs]
+filtered, freq = zip(*allentfreq.most_common(50))
+pruned = []
+for entFreq in entFreqs:
+    ents, freqs = zip(*entFreq.most_common(100))
+    topEnts = [x for x in ents if x not in filtered]
+    pruned.append(topEnts)
 
 print ("Top 10 entities by year")
-for year, list in zip(years, pruned):
-    print (year, pruned[:10])
-
+for i in range(len(years)):
+    print (years[i], pruned[i][:10])
 
 
 
