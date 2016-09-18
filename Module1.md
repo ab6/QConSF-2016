@@ -1,6 +1,6 @@
 #Precompiler - Introduction to NLP using NLTK and Python
-- Codemash 2016
-- January 5th, 2016
+- QCon San Francisco 2016
+- November 11, 2016
 - Amber McKenzie
 
 ##General Notes:
@@ -11,8 +11,8 @@ Many helpful resources are available online including:
   - Specifically useful for Module 2: http://www.nltk.org/_modules/nltk/corpus/reader/plaintext.html
 - NLTK Data: http://www.nltk.org/nltk_data/
 
-##Module 1 - Document Categorization via Naive-Bayes Classifier Model
-In this module, we will explore document categorization based on word frequency distribution by using a simple classifier trained on a known corpus. We will then use a small subset of the data to test the accuracy of the model.  These techniques can be applied to other models and data sets.
+##Module 1 - Document Categorization via Naive-Bayes and Decision Tree Classifier Models
+In this module, we will explore document categorization based on word frequency distribution by using simple classifiers trained on a known corpus. We will then use a small subset of the data to test the accuracy of the models.  These techniques can be applied to other models and data sets.
 
 The data for this application will be the Brown Corpus available via the Python NLTK package.  More information for each corpus in NLTK can be found on the NLTK.org website:
 http://www.nltk.org/nltk_data/
@@ -29,6 +29,8 @@ To achieve this goal, do the following:
 - Run the training set through a Naive-Bayes Classifier
 - Run an accuracy test on the classifier using the created Naive-Bayes Classifier and the test set
 - Print the resulting accuracy
+- Print out most informative features (can only do this for the NB classifier)
+- Try the same approach with a Decision Tree classifier
 
 ###Module 1 Hints and Tricks
 - The Brown Corpus is a CategorizedTaggedCorpusReader
@@ -54,11 +56,14 @@ To achieve this goal, do the following:
 - Use the NLTK Naive Bayes Classifier on the training set to generate a model
 - Calculate the model accuracy by passing in the classifier and the test set into NLTK Classifier Analyze
 - Print the calculated accuracy on the test set
+- Use the show_most_informative_features function to print out significant features for the naive-bayes model
+- Try the same approach with a Decision Tree classifier.
 
 ###Module 1 Additional Goals
 - Try filtering the feature word list using stopwords.  
   - How does this affect the accuracy?
+- Use the output of most_informative_features to filter your feature list.
+- Use a train, test and validation set to tune the model. A good description of how to do this is given in Section 1.2 of Chapter 6 of the NLTK book.
 - Break the Brown corpus documents into into imaginative and informative prose lists and run a model on each list in a similar fashion.
   - Is the accuracy any better for the separated document lists?
-- Stem the document words to provide a more concise list. 
-  - Is the accuracy any better?
+
