@@ -18,7 +18,7 @@ Notes:
 import nltk
 from nltk.collocations import *
 from nltk.corpus import state_union
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 def extract_entity_names(t):
     '''
@@ -56,22 +56,22 @@ tokens = [nltk.word_tokenize(text) for text in docs]
 sents = [nltk.sent_tokenize(text.replace("\n", " ")) for text in docs]
 senttokens = [[nltk.word_tokenize(sent) for sent in entry] for entry in sents]
 
-#get counts of unique words and plot over time
-unique = [len(set(words)) for words in tokens]
-plt.scatter(years, unique)
-plt.show()
-
-#get unique/total ratio
-ratios = [(float(len(set(words)))/float(len(words))) for words in tokens]
-plt.scatter(years, ratios)
-plt.show()
+# #get counts of unique words and plot over time
+# unique = [len(set(words)) for words in tokens]
+# plt.scatter(years, unique)
+# plt.show()
+#
+# #get unique/total ratio
+# ratios = [(float(len(set(words)))/float(len(words))) for words in tokens]
+# plt.scatter(years, ratios)
+# plt.show()
 
 #Collocations
 lower = [[word.lower() for word in words] for words in tokens]
 bigram_measures = nltk.collocations.BigramAssocMeasures()
 for i in range(len(years)):
     finder = BigramCollocationFinder.from_words(lower[i])
-    finder.apply_freq_filter(3)
+    # finder.apply_freq_filter(3)
     print (years[i], finder.nbest(bigram_measures.pmi, 10))
 
 #chunk text and extract entities
